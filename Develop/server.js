@@ -23,12 +23,12 @@ app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "/public/index.html"))
 });
 
-app.get("/list", function (req, res) {
+app.get("/notes", function (req, res) {
     res.sendFile(path.join(__dirname, "/public/notes.html"))
 });
 
-app.get("/api/students", function (req, res) {
-    fs.readFile("./db/studentList.json", "utf8", function (err, data) {
+app.get("/api/notes", function (req, res) {
+    fs.readFile("./db/db.json", "utf8", function (err, data) {
         if (err) throw err;
         console.log(data);
         const newData = JSON.parse(data);
@@ -36,7 +36,7 @@ app.get("/api/students", function (req, res) {
     })
 });
 
-app.post("/api/student", function (req, res) {
+app.post("/api/notes", function (req, res) {
 
     // console.log(req.body);
     fs.readFile("./db/studentList.json", "utf8", function (err, data) {
@@ -53,7 +53,7 @@ app.post("/api/student", function (req, res) {
     });
 })
 
-app.delete("/api/student/:name", function (req, res) {
+app.delete("/api/notes/:id", function (req, res) {
 //splice or slice
     res.json(req.params.name);
 })
