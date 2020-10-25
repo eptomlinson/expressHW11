@@ -2,7 +2,6 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 
-
 // const studentList = require("./db/studentList");
 // console.log(studentList);
 // const apiRoutes = require("./routes/apiRoutes");
@@ -39,16 +38,16 @@ app.get("/api/notes", function (req, res) {
 app.post("/api/notes", function (req, res) {
 
     // console.log(req.body);
-    fs.readFile("./db/studentList.json", "utf8", function (err, data) {
+    fs.readFile("./db/db.json", "utf8", function (err, data) {
         if (err) throw err;
         console.log(data);
-        const studentList = JSON.parse(data);
-        studentList.push(req.body);
-        console.log(studentList);
-        fs.writeFile("./db/studentList.json", JSON.stringify(studentList), function (err) {
+        const noteList = JSON.parse(data);
+        noteList.push(req.body);
+        console.log(noteList);
+        fs.writeFile("./db/db.json", JSON.stringify(noteList), function (err) {
             if (err) throw err;
             console.log("added");
-            res.redirect("/list");
+            res.redirect("/notes");
         });
     });
 })
