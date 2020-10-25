@@ -24,7 +24,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/list", function (req, res) {
-    res.sendFile(path.join(__dirname, "/public/list.html"))
+    res.sendFile(path.join(__dirname, "/public/notes.html"))
 });
 
 app.get("/api/students", function (req, res) {
